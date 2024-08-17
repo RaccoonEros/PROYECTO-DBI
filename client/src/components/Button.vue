@@ -3,6 +3,7 @@
 
   const props = defineProps({
     text: String,
+    type: String
   })
 
   const emits = defineEmits(['handleClick'])
@@ -15,3 +16,4 @@
 <template>
   <button @click="buttonAction">{{ text }}</button>
 </template>
+

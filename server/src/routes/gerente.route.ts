@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import sql from "mssql";
 import jwt from "jsonwebtoken";
+import { verifyToken } from "../middlewares/authMiddleware";
 
 export const gerenteRouter: Router = Router();
 
@@ -9,20 +10,18 @@ gerenteRouter.post("/login", async (req: Request, res: Response) => {
   if (!user) return res.status(400).json({ message: "Missing parameters" });
   try {
     const dbRes = await sql.query(
-      `SELECT * FROM GERENTES WHERE USUARIO LIKE '${user}'`
+      `SELECT * FROM Administradores WHERE usuario LIKE '${user}'`
     );
-
     const userResult = dbRes.recordset[0];
-
     if (!userResult)
       return res.status(401).json({ message: "Invalid Credentials", data: {} });
 
     const password: string = req.body.password;
-    if (userResult.CONTRASENA !== password)
+    if (userResult.contrasena !== password)
       return res.status(401).json({ message: "Invalid credentials", data: {} });
 
     const dbWorkerRes = await sql.query(
-      `SELECT * FROM EMPLEADOS WHERE ID = ${userResult.ID}`
+      `SELECT * FROM EMPLEADOS WHERE ID = ${userResult.ID_empleado}`
     );
     const worker = dbWorkerRes.recordset[0];
 

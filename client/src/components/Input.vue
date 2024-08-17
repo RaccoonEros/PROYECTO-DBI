@@ -5,9 +5,10 @@ import { defineProps, ref, defineEmits } from "vue";
 const props = defineProps({
   inputType: String,
   placeholder: String,
-  maxLength: Number,
-  minLength: Number,
-  inputValue: String
+  maxLength: String,
+  minLength: String,
+  inputValue: String,
+  fileType: String
 });
 
 const emits = defineEmits(['currentValue'])
@@ -26,6 +27,7 @@ function getCurrentValue(e) {
     :maxlength="maxLength"
     :placeholder="placeholder"
     :value="inputValue"
+    :accept="fileType"
   />
 </template>
 

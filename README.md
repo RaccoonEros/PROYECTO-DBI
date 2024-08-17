@@ -12,7 +12,6 @@ proyecto para la clase base de datos I en Universidad Nacional Autónoma de Hond
 ### Instalar todas las dependencias
 ```
 npm install
-
 ```
 
 ### Por cada cambio al proyecto, compilar usando
